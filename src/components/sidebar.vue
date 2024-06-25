@@ -2,7 +2,8 @@
   <div class="flex flex-col gap-1">
     <div class="py-4">
       <button
-        class="bg-white text-blue-700 border-1 p-2 w-full text-left px-4 flex justify-between items-center"
+        class="bg-white text-black-800 border-1 p-2 w-full text-left px-4 flex justify-between items-center"
+        :class="{ 'text-blue-700': !handleBookBoolean }"
         @click="handleBook"
       >
         Kitoblar
@@ -31,7 +32,8 @@
 
     <div class="">
       <button
-        class="bg-white text-blue-700 border-1 p-2 w-full text-left px-4 flex justify-between items-center"
+        class="bg-white text-black-700 border-1 p-2 w-full text-left px-4 flex justify-between items-center"
+        :class="{ 'text-blue-700': !handleAudioBookBoolean }"
         @click="handleAudioBook"
       >
         Audiokitoblar
@@ -57,6 +59,13 @@
         </li>
       </ul>
     </div>
+
+    <button
+      class="bg-white text-black-700 border-1 p-2 w-full text-left px-4 flex justify-between items-center mt-3"
+      @click="$emit('addBook')"
+    >
+      Add Book
+    </button>
   </div>
 </template>
 
