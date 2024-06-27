@@ -15,7 +15,7 @@
       <Cform
         @cancelAddBook="handleAddBook"
         v-if="addBookBoolean"
-        class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
       />
     </div>
   </div>

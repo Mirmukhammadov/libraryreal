@@ -26,18 +26,16 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, watchEffect } from "vue";
 
-const books = ref(JSON.parse(localStorage.getItem("bookValues")));
+const books = computed(() => {
+  const storedBooks = JSON.parse(localStorage.getItem("bookValues")) || [];
+  return storedBooks;
+});
+
+// Watch for changes in localStorage and update books
+watchEffect(() => {
+  const storedBooks = JSON.parse(localStorage.getItem("bookValues")) || [];
+  books.value = storedBooks;
+});
 </script>
-
-<!-- 
-let bookValues = ref({
-  name: "",
-  category: "",
-  author: "",
-  year: "",
-  linkCovers: "",
-  linkBook: "",
-  comment: "",
-}); -->

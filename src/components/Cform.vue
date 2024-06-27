@@ -19,6 +19,7 @@
           placeholder="Name"
           v-model="bookValues.name"
           class="w-[48%]"
+          :class="{ 'border-[red]': v$.name.$error }"
         />
 
         <Cinput
@@ -26,6 +27,7 @@
           placeholder="Author"
           v-model="bookValues.author"
           class="w-[48%] pl-3"
+          :class="{ 'border-[red]': v$.author.$error }"
         />
         <Cinput
           required
@@ -33,12 +35,14 @@
           placeholder="Year"
           v-model="bookValues.year"
           class="w-[48%]"
+          :class="{ 'border-[red]': v$.year.$error }"
         />
         <Cinput
           required
           placeholder="Link Covers"
           v-model="bookValues.linkCovers"
           class="w-[48%] pl-3"
+          :class="{ 'border-[red]': v$.linkCovers.$error }"
         />
 
         <select
@@ -46,6 +50,7 @@
           name=""
           id=""
           v-model="bookValues.category"
+          :class="{ 'border-[red]': v$.category.$error }"
           class="outline-none border hover:border-blue-100 rounded w-[48%] py-3 pl-3 color-black"
         >
           <option value="" disabled selected hidden>Category</option>
@@ -56,6 +61,7 @@
           required
           placeholder="Link Book"
           v-model="bookValues.linkBook"
+          :class="{ 'border-[red]': v$.linkBook.$error }"
           class="w-[48%] pl-3"
         />
         <textarea
@@ -64,8 +70,13 @@
           placeholder="Comment"
           class="w-full outline-none border hover:border-blue-100 rounded py-3 px-[10px] color-black"
           v-model="bookValues.comment"
+          :class="{ 'border-[red]': v$.comment.$error }"
         />
       </form>
+
+      <span class="text-[red] px-2 font-bold" v-if="hasError"
+        >please, fill form correctly</span
+      >
       <div class="flex justify-end gap-3" style="align-items: end">
         <button
           class="text-white bg-red-600 px-3 py-2 rounded"
@@ -87,6 +98,8 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 import Cinput from "./Cinput.vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, email } from "@vuelidate/validators";
 const bookValuesArray = ref([]);
 
 let bookValues = ref({
@@ -98,10 +111,29 @@ let bookValues = ref({
   linkBook: "",
   comment: "",
 });
+
+const rules = {
+  name: { required },
+  category: { required },
+  author: { required },
+  year: { required },
+  linkCovers: { required },
+  linkBook: { required },
+  comment: { required },
+};
+
+const v$ = useVuelidate(rules, bookValues);
+const hasError = ref(false);
+
 const emits = defineEmits(["cancelAddBook"]);
 function getBookValues() {
-  console.log(bookValues.value, "value");
+  v$.value.$touch();
+  if (v$.value.$invalid) {
+    hasError.value = true;
+    return;
+  }
 
+  hasError.value = false;
   bookValuesArray.value = localStorage.getItem("bookValues");
   !bookValuesArray.value
     ? (bookValuesArray.value = [])
@@ -110,6 +142,8 @@ function getBookValues() {
   bookValuesArray.value.push(bookValues.value);
 
   localStorage.setItem("bookValues", JSON.stringify(bookValuesArray.value));
+
+  location.reload();
 
   emits("cancelAddBook");
 }

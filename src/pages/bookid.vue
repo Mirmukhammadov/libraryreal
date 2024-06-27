@@ -17,13 +17,15 @@
           <div class="flex flex-col gap-y-3 items-start rounded">
             <img src="https://picsum.photos/250/350" alt="" />
             <button
-              class="bg-[blue] text-center w-full p-2 text-white text-normal hover:opacity-[90%] duration-200"
+              class="bg-[blue] text-center w-full p-2 text-white text-normal hover:opacity-[80%] duration-200 flex gap-x-2 items-center justify-center"
             >
+              <i class="fa-regular fa-bookmark"></i>
               save
             </button>
             <button
-              class="bg-[green] w-full text-center p-2 text-white text-normal hover:opacity-[80%] duration-200"
+              class="bg-[green] w-full text-center p-2 text-white text-normal hover:opacity-[90%] duration-200 flex gap-x-2 items-center justify-center"
             >
+              <i class="fa-solid fa-download"></i>
               download
             </button>
           </div>
