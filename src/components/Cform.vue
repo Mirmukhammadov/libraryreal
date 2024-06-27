@@ -87,6 +87,7 @@
 <script setup>
 import { ref, defineEmits } from "vue";
 import Cinput from "./Cinput.vue";
+const bookValuesArray = ref([]);
 
 let bookValues = ref({
   name: "",
@@ -99,9 +100,17 @@ let bookValues = ref({
 });
 const emits = defineEmits(["cancelAddBook"]);
 function getBookValues() {
-  console.log(bookValues.value.name, "value");
   console.log(bookValues.value, "value");
 
-  //   emits("cancelAddBook");
+  bookValuesArray.value = localStorage.getItem("bookValues");
+  !bookValuesArray.value
+    ? (bookValuesArray.value = [])
+    : (bookValuesArray.value = JSON.parse(bookValuesArray.value));
+
+  bookValuesArray.value.push(bookValues.value);
+
+  localStorage.setItem("bookValues", JSON.stringify(bookValuesArray.value));
+
+  emits("cancelAddBook");
 }
 </script>

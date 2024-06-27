@@ -30,7 +30,6 @@ import { ref } from "vue";
 
 let addBookBoolean = ref(false);
 function handleAddBook() {
-  console.log("add book", "index");
   addBookBoolean.value = !addBookBoolean.value;
 }
 </script>
