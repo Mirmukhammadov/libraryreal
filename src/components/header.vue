@@ -12,7 +12,7 @@
           <input
             type="text"
             v-model="searchedbook"
-            @keydown.enter="handleSearch"
+            @keydown.enter="$emit('handleSearch', searchedbook)"
             placeholder="Search"
             class="outline-none"
           />
@@ -37,13 +37,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 let searchedbook = ref("");
-
-function handleSearch() {
-  console.log(searchedbook.value, "search");
-}
 
 function handleHamburger() {
   console.log("hamburger");

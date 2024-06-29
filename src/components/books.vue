@@ -4,9 +4,10 @@
     <div class="flex-2 overflow-y-auto p-2 bg-white mt-4">
       <!-- Books content goes here -->
       <h2 class="text-xl font-bold mb-4">Yangi Kitoblar</h2>
+
       <div class="flex flex-wrap gap-1">
         <div
-          v-for="(book, index) in books"
+          v-for="(book, index) in booksToRender"
           :key="index"
           :to="'/' + index"
           class="my-2 p-4 bg-white shadow rounded border hover:border-blue-300 cursor-pointer"
@@ -26,16 +27,15 @@
 </template>
 
 <script setup>
-import { computed, watchEffect } from "vue";
+import { computed, watchEffect, defineProps } from "vue";
 
-const books = computed(() => {
-  const storedBooks = JSON.parse(localStorage.getItem("bookValues")) || [];
-  return storedBooks;
+const props = defineProps({
+  booksToRender: {
+    type: Array,
+    default: () => [],
+  },
 });
 
-// Watch for changes in localStorage and update books
-watchEffect(() => {
-  const storedBooks = JSON.parse(localStorage.getItem("bookValues")) || [];
-  books.value = storedBooks;
-});
+console.log(props.booksToRender);
+console.log("hi");
 </script>
