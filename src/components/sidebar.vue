@@ -6,7 +6,7 @@
         :class="{ 'text-blue-700': !handleBookBoolean }"
         @click="handleBook"
       >
-        Kitoblar
+        {{ t("sidebar.books") }}
         <i v-if="handleBookBoolean" class="fa-solid fa-arrow-down"></i>
         <i v-else class="fa-solid fa-arrow-up"></i>
       </button>
@@ -15,17 +15,17 @@
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600 cursor-pointer"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600 cursor-pointer"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600 cursor-pointer"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
       </ul>
     </div>
@@ -36,7 +36,7 @@
         :class="{ 'text-blue-700': !handleAudioBookBoolean }"
         @click="handleAudioBook"
       >
-        Audiokitoblar
+        {{ t("sidebar.audiobooks") }}
         <i v-if="handleAudioBookBoolean" class="fa-solid fa-arrow-down"></i>
         <i v-else class="fa-solid fa-arrow-up"></i>
       </button>
@@ -45,17 +45,17 @@
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
         <li
           class="bg-white w-full p-1 px-4 text-gray-500 border-[1px] border-black-600"
         >
-          Category 1
+          {{ t("sidebar.category") }} 1
         </li>
       </ul>
     </div>
@@ -64,13 +64,15 @@
       class="bg-white text-black-700 border-1 p-2 w-full text-left px-4 flex justify-between items-center mt-3"
       @click="$emit('addBook')"
     >
-      Add Book
+      {{ t("sidebar.addBook") }}
     </button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
 let handleBookBoolean = ref(true);
 let handleAudioBookBoolean = ref(true);
 function handleBook() {

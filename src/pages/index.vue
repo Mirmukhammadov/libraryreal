@@ -6,7 +6,11 @@
       <div class="bg-sky-100">
         <div class="container w-full h-full flex justify-between gap-3">
           <Sidebar class="w-[23%] p-0" @addBook="handleAddBook" />
-          <Books class="overflow-auto w-[76%]" :booksToRender="booksToRender" />
+          <Books
+            class="overflow-auto w-[76%]"
+            :booksToRender="booksToRender"
+            @handleDeleteBook="handleDeleteBook"
+          />
         </div>
       </div>
     </div>
@@ -56,4 +60,8 @@ watchEffect(() => {
 const booksToRender = computed(() => {
   return searchValue.value ? filteredBooks.value : bookArray.value;
 });
+
+function handleDeleteBook(id) {
+  console.log(id, "indexbookid");
+}
 </script>

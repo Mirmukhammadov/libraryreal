@@ -1,4 +1,6 @@
 <template>
-  <div id="app"></div>
-  <router-view></router-view>
+  <div id="app">
+    <LanguageSwitcher />
+    <router-view></router-view>
+  </div>
 </template>

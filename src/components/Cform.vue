@@ -4,7 +4,7 @@
       class="bg-white border border-black-900 w-[80%] mx-auto my-0 px-4 py-10 mt-[100px] gap-y-4 flex flex-col"
     >
       <div class="flex justify-between items-center w-full">
-        <h3 class="text-black text-2xl">Add book</h3>
+        <h3 class="text-black text-2xl">{{ t("form.title") }}</h3>
         <button class="bg-red-100 py-1 px-2" @click="$emit('cancelAddBook')">
           <i class="fa-solid fa-xmark text-red-600"></i>
         </button>
@@ -16,7 +16,7 @@
       >
         <Cinput
           required
-          placeholder="Name"
+          :placeholder="t('form.name')"
           v-model="bookValues.name"
           class="w-[48%]"
           :class="{ 'border-[red]': v$.name.$error }"
@@ -24,7 +24,7 @@
 
         <Cinput
           required
-          placeholder="Author"
+          :placeholder="t('form.author')"
           v-model="bookValues.author"
           class="w-[48%] pl-3"
           :class="{ 'border-[red]': v$.author.$error }"
@@ -32,14 +32,14 @@
         <Cinput
           required
           type="number"
-          placeholder="Year"
+          :placeholder="t('form.year')"
           v-model="bookValues.year"
           class="w-[48%]"
           :class="{ 'border-[red]': v$.year.$error }"
         />
         <Cinput
           required
-          placeholder="Link Covers"
+          :placeholder="t('form.linkCovers')"
           v-model="bookValues.linkCovers"
           class="w-[48%] pl-3"
           :class="{ 'border-[red]': v$.linkCovers.$error }"
@@ -53,13 +53,15 @@
           :class="{ 'border-[red]': v$.category.$error }"
           class="outline-none border hover:border-blue-100 rounded w-[48%] py-3 pl-3 color-black"
         >
-          <option value="" disabled selected hidden>Category</option>
+          <option value="" disabled selected hidden>
+            {{ t("form.category") }}
+          </option>
           <option value="books">Books</option>
           <option value="audioBooks">AudioBooks</option>
         </select>
         <Cinput
           required
-          placeholder="Link Book"
+          :placeholder="t('form.linkBook')"
           v-model="bookValues.linkBook"
           :class="{ 'border-[red]': v$.linkBook.$error }"
           class="w-[48%] pl-3"
@@ -67,7 +69,7 @@
         <textarea
           required
           type="text"
-          placeholder="Comment"
+          :placeholder="t('form.comment')"
           class="w-full outline-none border hover:border-blue-100 rounded py-3 px-[10px] color-black"
           v-model="bookValues.comment"
           :class="{ 'border-[red]': v$.comment.$error }"
@@ -82,13 +84,13 @@
           class="text-white bg-red-600 px-3 py-2 rounded"
           @click="$emit('cancelAddBook')"
         >
-          Cancel
+          {{ t("form.cancelButton") }}
         </button>
         <button
           class="inline text-white bg-green-600 px-3 py-2 rounded"
           @click="getBookValues"
         >
-          Add
+          {{ t("form.addButton") }}
         </button>
       </div>
     </div>
@@ -100,7 +102,9 @@ import { ref, defineEmits } from "vue";
 import Cinput from "./Cinput.vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, email } from "@vuelidate/validators";
+import { useI18n } from "vue-i18n";
 const bookValuesArray = ref([]);
+const { t } = useI18n();
 
 let bookValues = ref({
   name: "",

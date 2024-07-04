@@ -13,6 +13,14 @@ const router = createRouter({
       name: "bookid",
       component: () => import("../pages/bookid.vue"),
     },
+
+    {
+      path: "/:lang/:chatchAll(.*)",
+      redirect: (to) => {
+        const lang = to.params;
+        return "/${lang}/home";
+      },
+    },
   ],
 });
 

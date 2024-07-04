@@ -13,7 +13,7 @@
             type="text"
             v-model="searchedbook"
             @keydown.enter="$emit('handleSearch', searchedbook)"
-            placeholder="Search"
+            :placeholder="t('header.search')"
             class="outline-none"
           />
           <img
@@ -28,8 +28,12 @@
           class="w-10 h-10 sm:hidden"
         />
         <div class="sm:flex justify-between gap-3 uppercase hidden">
-          <button class="uppercase">uz</button>
-          <button class="uppercase">rus</button>
+          <button @click="changeLanguage('en')" class="uppercase">
+            {{ t("header.en") }}
+          </button>
+          <button @click="changeLanguage('ru')" class="uppercase">
+            {{ t("header.ru") }}
+          </button>
         </div>
       </div>
     </div>
@@ -38,6 +42,19 @@
 
 <script setup>
 import { ref, computed } from "vue";
+
+import { useRouter, useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
+const { t } = useI18n();
+
+const router = useRouter();
+const route = useRoute();
+const { locale } = useI18n();
+
+function changeLanguage(lang) {
+  locale.value = lang;
+  router.push({ name: route.name, params: { ...route.params, lang } });
+}
 
 let searchedbook = ref("");
 
