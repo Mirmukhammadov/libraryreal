@@ -5,7 +5,7 @@
       <!-- Books content goes here -->
       <h2 class="text-xl font-bold mb-4">{{ t("books.title") }}</h2>
 
-      <div class="flex flex-wrap gap-1">
+      <div class="flex flex-wrap gap-5 justify-center">
         <div
           v-for="(book, index) in booksToRender"
           :key="index"
@@ -14,7 +14,7 @@
         >
           <router-link :to="'/' + index" class="hover:no-underline">
             <div class="flex flex-col hover:no-underline border-none">
-              <img src="https://picsum.photos/250/350" alt="" />
+              <img src="https://picsum.photos/200/300" alt="" />
               <p class="uppercase">{{ book.name }}</p>
               <p>{{ book.author }}</p>
               <p>{{ book.year }}</p>
