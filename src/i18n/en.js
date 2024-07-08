@@ -16,6 +16,7 @@ export default {
     comment: "comment",
     cancelButton: "cancel",
     addButton: "add",
+    error: "please fill form correctly",
   },
 
   header: {

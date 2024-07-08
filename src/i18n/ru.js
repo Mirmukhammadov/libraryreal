@@ -15,6 +15,7 @@ export default {
     comment: "Комментарий",
     cancelButton: "Отмена",
     addButton: "Добавить",
+    error: "пожалуйста, заполните форму правильно",
   },
 
   header: {

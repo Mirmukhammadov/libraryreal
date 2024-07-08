@@ -76,9 +76,9 @@
         />
       </form>
 
-      <span class="text-[red] px-2 font-bold" v-if="hasError"
-        >please, fill form correctly</span
-      >
+      <span class="text-[red] px-2 font-bold" v-if="hasError">{{
+        t("form.error")
+      }}</span>
       <div class="flex justify-end gap-3" style="align-items: end">
         <button
           class="text-white bg-red-600 px-3 py-2 rounded"

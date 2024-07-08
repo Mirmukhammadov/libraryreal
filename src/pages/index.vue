@@ -8,7 +8,7 @@
       />
       <sidebarModal
         v-if="hamburger"
-        class="absolute top-0 left-0"
+        class="absolute top-0 left-0 sm:hidden"
         @addBook="handleAddBook"
       />
 
